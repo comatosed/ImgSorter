@@ -17,7 +17,6 @@ i = 0
 while i < len(filesGrabbed):
     infile = filesGrabbed[i]
     im = Image.open(infile)
-    print('Copying', infile, "%dx%d" % im.size)
     foldName = ("%dx%d" % im.size)
 
     if not os.path.exists(foldName): # Create the subdirectory if it isn't already there.
@@ -32,8 +31,8 @@ while i < len(filesGrabbed):
     for src_dir, dirs, fyles in os.walk(root_src_dir):
         dst_dir = (root_src_dir+'\\'+foldName)
 
-
-        shutil.copy(infile, dst_dir)
+    shutil.move(infile, dst_dir)
+    print('Moving', infile, 'to the', "%dx%d" % im.size, 'directory')
 
     i = i + 1
 
